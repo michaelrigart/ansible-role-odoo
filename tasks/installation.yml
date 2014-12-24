@@ -1,0 +1,52 @@
+---
+
+- name: checkout source
+  sudo: 'yes'
+  sudo_user: '{{ odoo_user.username }}'
+  git:
+    repo: '{{ odoo_user.odoo_repo }}'
+    version: '{{ odoo_user.odoo_version }}'
+    dest: '{{ odoo_user.home }}/{{ odoo_user.odoo_version }}'
+    update: 'yes'
+  notify: odoo_restart
+
+- name: register python odoo dependencies through the debian/control script
+  shell: 'grep "python-" {{ odoo_user.home }}/{{ odoo_user.odoo_version }}/debian/control | sed -e"s/[, ]//g"'
+  register: odoo_dependencies
+  changed_when: False
+
+- name: install registered odoo dependencies
+  apt:
+    pkg: '{{ item }}'
+    state: installed
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items: odoo_dependencies.stdout_lines
+
+- name: download wkhtmltopdf
+  get_url:
+    url: '{{ odoo_wkhtmltopdf_package }}'
+    dest: /tmp/wkhtmltopdf.deb
+
+- name: install wkhtmltopdf
+  apt:
+    deb: /tmp/wkhtmltopdf.deb
+
+
+- name: create odoo directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ odoo_user.username }}'
+    group: '{{ odoo_user.username }}'
+    mode: '0750'
+  with_items:
+    - /etc/odoo
+    - /var/log/odoo
+
+- name: create the odoo log file
+  file:
+    path: '{{ odoo_log }}'
+    owner: '{{ odoo_user.username }}'
+    group: root
+    mode: '0644'

@@ -1,0 +1,24 @@
+---
+
+- name: create group for user
+  group:
+    name: '{{ odoo_user.username }}'
+    gid: '{{ odoo_user.uid }}'
+  when: odoo_user is defined
+
+- name: create user
+  user:
+    name: '{{ odoo_user.username }}'
+    group: '{{ odoo_user.username }}'
+    groups: '{{ odoo_user.groups|join(",") }}'
+    shell: '{{ odoo_user.shell }}'
+    comment: '{{ odoo_user.name }}'
+    uid: '{{ odoo_user.uid }}'
+    home: '{{ odoo_user.home }}'
+    createhome: '{{ odoo_user.createhomedir }}'
+  when: odoo_user is defined
+
+- name: create postgres odoo user
+  sudo: 'yes'
+  sudo_user: postgres
+  shell: 'createuser -d -R -S {{ odoo_user.username }} 2> /dev/null || true'

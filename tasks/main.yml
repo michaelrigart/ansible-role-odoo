@@ -1,0 +1,19 @@
+---
+
+- include: user.yml
+  tags: users
+
+- include: installation.yml
+  tags: package
+
+- include: configuration.yml
+  tags: configuration
+
+- name: start/stop odoo-server service
+  service:
+    name: odoo-server
+    state: '{{ odoo_service_state }}'
+    enabled: '{{ odoo_service_enabled }}'
+  tags: service
+
+

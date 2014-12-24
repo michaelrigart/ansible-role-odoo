@@ -1,0 +1,6 @@
+---
+
+- name: odoo_restart
+  service:
+    name: odoo-server
+    state: restarted

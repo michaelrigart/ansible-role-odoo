@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Michaël Rigart
+  description: An ansible role for installing and configuring Odoo.
+  company: Netronix.be
+  license: GPLv3
+  min_ansible_version: 1.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  categories:
+    - web
+dependencies: []

@@ -1,0 +1,19 @@
+---
+
+- name: copy the odoo-server config
+  template:
+    src: odoo-server.conf.j2
+    dest: /etc/odoo/odoo-server.conf
+    owner: '{{ odoo_user.username }}'
+    group: '{{ odoo_user.username }}'
+    mode: '0644'
+  notify: odoo_restart
+
+- name: copy the init script
+  template:
+    src: odoo-server.j2
+    dest: /etc/init.d/odoo-server
+    owner: root
+    group: root
+    mode: '0755'
+  notify: odoo_restart
