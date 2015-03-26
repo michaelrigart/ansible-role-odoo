@@ -23,6 +23,7 @@ odoo_user: a dictionary holding all crucial information about the Odoo user and 
 odoo_server_config: a dictionary holding you odoo-server configuration parameters
 odoo_daemon: path to the Odoo-server daemon
 odoo_config: path to the Odoo configuration file
+odoo_directories: list of directories that need to be created
 odoo_log: path to the Odoo log file
 odoo_service_state: state of the odoo service
 odoo_service_enabled: set to enable / disable odoo service

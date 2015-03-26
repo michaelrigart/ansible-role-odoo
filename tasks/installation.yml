@@ -40,13 +40,12 @@
     owner: '{{ odoo_user.username }}'
     group: '{{ odoo_user.username }}'
     mode: '0750'
-  with_items:
-    - /etc/odoo
-    - /var/log/odoo
+  with_items: odoo_directories
 
 - name: create the odoo log file
   file:
     path: '{{ odoo_log }}'
+    state: 'touch'
     owner: '{{ odoo_user.username }}'
     group: root
     mode: '0644'
