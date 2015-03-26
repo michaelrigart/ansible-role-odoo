@@ -25,4 +25,4 @@ odoo_config: '/etc/odoo/odoo-server.conf'
 odoo_log: '/var/log/odoo/odoo-server.log'
 odoo_service_state: 'started'
 odoo_service_enabled: 'yes'
-odoo_wkhtmltopdf_package: http://downloads.sourceforge.net/project/wkhtmltopdf/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+odoo_wkhtmltopdf_package: http://sourceforge.net/projects/wkhtmltopdf/files/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb/download
