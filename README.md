@@ -1,5 +1,6 @@
 Ansible Odoo Role
 =================
+[![Build Status](https://travis-ci.org/michaelrigart/ansible-role-odoo.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-odoo)
 
 An ansible role for installing and configuring Odoo.
 The installation happens from a git repository (source), so not from a package.
@@ -17,23 +18,27 @@ I do not use the Ansible dependency system, so you can freely choose which roles
 Role Variables
 --------------
 
-- odoo_user: a dictionary holding all crucial information about the Odoo user and instance
-- odoo_server_config: a dictionary holding you odoo-server configuration parameters
-- odoo_daemon: path to the Odoo-server daemon
-- odoo_config: path to the Odoo configuration file
-- odoo_log: path to the Odoo log file
-- odoo_service_state: state of the odoo service
-- odoo_service_enabled: set to enable / disable odoo service
-- odoo_wkhtmltopdf_package: url to the wkhtmltopdf binary file
+```yaml
+odoo_user: a dictionary holding all crucial information about the Odoo user and instance
+odoo_server_config: a dictionary holding you odoo-server configuration parameters
+odoo_daemon: path to the Odoo-server daemon
+odoo_config: path to the Odoo configuration file
+odoo_log: path to the Odoo log file
+odoo_service_state: state of the odoo service
+odoo_service_enabled: set to enable / disable odoo service
+odoo_wkhtmltopdf_package: url to the wkhtmltopdf binary file
+```
 
 View the default vars - defaults/main.yml - for a more detailed example.
 
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - { role: MichaelRigart.odoo }
+```yaml
+- hosts: servers
+  roles:
+     - { role: MichaelRigart.odoo, sudo: Yes }
+```
 
 License
 -------
