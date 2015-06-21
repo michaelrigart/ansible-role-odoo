@@ -1,6 +1,6 @@
 Ansible Odoo Role
 =================
-[![Build Status](https://travis-ci.org/michaelrigart/ansible-role-odoo.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-odoo)
+[![Build Status](https://semaphoreci.com/api/v1/projects/daf50ecd-f023-4468-9a27-066f3ada8a93/461764/badge.svg)](https://semaphoreci.com/michaelrigart/ansible-role-odoo) [![Build Status](https://travis-ci.org/michaelrigart/ansible-role-odoo.svg?branch=master)](https://travis-ci.org/michaelrigart/ansible-role-odoo)
 
 An ansible role for installing and configuring Odoo.
 The installation happens from a git repository (source), so not from a package.
