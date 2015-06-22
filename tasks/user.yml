@@ -21,4 +21,6 @@
 - name: create postgres odoo user
   sudo: 'yes'
   sudo_user: postgres
-  shell: 'createuser -d -R -S {{ odoo_user.username }} 2> /dev/null || true'
+  postgresql_user:
+    name: '{{ odoo_user.username }}'
+    role_attr_flags: 'CREATEDB,NOCREATEROLE,NOSUPERUSER'

@@ -7,7 +7,6 @@
     repo: '{{ odoo_user.odoo_repo }}'
     version: '{{ odoo_user.odoo_version }}'
     dest: '{{ odoo_user.home }}/{{ odoo_user.odoo_version }}'
-    update: 'yes'
   notify: odoo_restart
 
 - name: register python odoo dependencies through the debian/control script
@@ -32,7 +31,6 @@
   apt:
     deb: /tmp/wkhtmltopdf.deb
 
-
 - name: create odoo directories
   file:
     path: '{{ item }}'
@@ -43,9 +41,6 @@
   with_items: odoo_directories
 
 - name: create the odoo log file
-  file:
-    path: '{{ odoo_log }}'
-    state: 'touch'
-    owner: '{{ odoo_user.username }}'
-    group: root
-    mode: '0644'
+  command: 'touch {{ odoo_log }}; chown {{ odoo_user.username }}:root {{ odoo_log }}; chmod 0644 {{ odoo_log }};'
+  args:
+    creates: '{{ odoo_log }}'

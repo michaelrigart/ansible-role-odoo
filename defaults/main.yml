@@ -3,8 +3,7 @@
 odoo_user:
   username: 'odoo'
   uid: '500'
-  groups:
-    - 'odoo'
+  groups: []
   shell: '/bin/bash'
   name: 'Odoo Instance User'
   home: '/srv/odoo'
