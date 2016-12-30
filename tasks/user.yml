@@ -19,8 +19,8 @@
   when: odoo_user is defined
 
 - name: create postgres odoo user
-  sudo: 'yes'
-  sudo_user: postgres
+  become: true
+  become_user: postgres
   postgresql_user:
     name: '{{ odoo_user.username }}'
     role_attr_flags: 'CREATEDB,NOCREATEROLE,NOSUPERUSER'

@@ -1,8 +1,8 @@
 ---
 
 - name: checkout source
-  sudo: 'yes'
-  sudo_user: '{{ odoo_user.username }}'
+  become: 'yes'
+  become_user: '{{ odoo_user.username }}'
   git:
     repo: '{{ odoo_user.odoo_repo }}'
     version: '{{ odoo_user.odoo_version }}'
