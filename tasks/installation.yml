@@ -20,7 +20,7 @@
     state: installed
     update_cache: yes
     cache_valid_time: 3600
-  with_items: odoo_dependencies.stdout_lines
+  with_items: '{{ odoo_dependencies.stdout_lines }}'
 
 - name: download wkhtmltopdf
   get_url:
@@ -38,7 +38,7 @@
     owner: '{{ odoo_user.username }}'
     group: '{{ odoo_user.username }}'
     mode: '0750'
-  with_items: odoo_directories
+  with_items: '{{ odoo_directories }}'
 
 - name: create the odoo log file
   command: 'touch {{ odoo_log }}; chown {{ odoo_user.username }}:root {{ odoo_log }}; chmod 0644 {{ odoo_log }};'
